@@ -296,9 +296,9 @@ func (broker *Broker) requestStreamingly(payload []byte, timeout int) (r io.Read
 	io.Copy(broker.conn, bytes.NewBuffer(payload))
 
 	responseLengthBuf := make([]byte, 4)
-	if timeout > 0 {
-		broker.conn.SetReadDeadline(time.Now().Add(time.Duration(timeout) * time.Millisecond))
-	}
+	// if timeout > 0 {
+	// 	broker.conn.SetReadDeadline(time.Now().Add(time.Duration(timeout) * time.Millisecond))
+	// }
 	n, err := broker.conn.Read(responseLengthBuf)
 	if err != nil {
 		return nil, responseLength, err
